@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    TextView resultado;
+    TextView text1;
     TextView text2;
     Button zero;
     Button one;
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btn_sin;
     Button btn_tan;
 
-   Double[] num = new Double[10];
+   Double[] num = new Double[3];
     boolean add = false;
     boolean sub = false;
     boolean mult = false;
@@ -42,8 +42,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        resultado=findViewById(R.id.resultado);
-        resultado.setText("");
+        text1=findViewById(R.id.resultado);
+        text1.setText("");
         text2=findViewById(R.id.Text2);
         text2.setText("");
         zero = (Button) findViewById(R.id.zero);
@@ -88,103 +88,104 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        TextView resultado = (TextView) findViewById(R.id.resultado);
         int btn = v.getId();
-        String x = resultado.getText().toString();
+        String x = text1.getText().toString();
         try{
             switch (btn){
                 case R.id.zero:
-                    resultado.setText(x+"0");
+                    text1.setText(x+"0");
                     break;
                 case R.id.one:
-                    resultado.setText(x+"1");
+                    text1.setText(x+"1");
                     break;
                 case R.id.two:
-                    resultado.setText(x+"2");
+                    text1.setText(x+"2");
                     break;
                 case R.id.three:
-                    resultado.setText(x+"3");
+                    text1.setText(x+"3");
                     break;
                 case R.id.four:
-                    resultado.setText(x+"4");
+                    text1.setText(x+"4");
                     break;
                 case R.id.five:
-                    resultado.setText(x+"5");
+                    text1.setText(x+"5");
                     break;
                 case R.id.six:
-                    resultado.setText(x+"6");
+                    text1.setText(x+"6");
                     break;
                 case R.id.seven:
-                    resultado.setText(x+"7");
+                    text1.setText(x+"7");
                     break;
                 case R.id.eight:
-                    resultado.setText(x+"8");
+                    text1.setText(x+"8");
                     break;
                 case R.id.nine:
-                    resultado.setText(x+"9");
+                    text1.setText(x+"9");
                     break;
                 case R.id.clear:
-                    resultado.setText("");
+                    text1.setText("");
+                    text2.setText("");
+                    break;
                 case R.id.add:
                     add = true;
                     num[0]=Double.parseDouble(x);
                     text2.setText(String.valueOf(x+"+"));
-                    resultado.setText("");
+                    text1.setText("");
                     break;
                 case R.id.sub:
                     sub = true;
                     num[0]=Double.parseDouble(x);
                     text2.setText(String.valueOf(x+"-"));
-                    resultado.setText("");
+                    text1.setText("");
                     break;
                 case R.id.mult:
                     mult = true;
                     num[0]=Double.parseDouble(x);
                     text2.setText(String.valueOf(x+"*"));
-                    resultado.setText("");
+                    text1.setText("");
                     break;
                 case R.id.div:
                     div = true;
                     num[0]=Double.parseDouble(x);
                     text2.setText(String.valueOf(x+"/"));
-                    resultado.setText("");
+                    text1.setText("");
                     break;
                 case R.id.cos:
                     num[0]= Double.parseDouble(x);
                     text2.setText(String.valueOf("cos "+num[0]));
                     res = Math.cos(num[0]*Math.PI/180);
-                    resultado.setText(String.valueOf(res));
+                    text1.setText(String.valueOf(res));
                     break;
                 case R.id.sin:
                     num[0]= Double.parseDouble(x);
                     text2.setText(String.valueOf("sin "+num[0]));
                     res = Math.sin(num[0]*Math.PI/180);
-                    resultado.setText(String.valueOf(res));
+                    text1.setText(String.valueOf(res));
                     break;
                 case R.id.tan:
                     num[0]= Double.parseDouble(x);
                     text2.setText(String.valueOf("tan "+num[0]));
                     res = Math.tan(num[0]*Math.PI/180);
-                    resultado.setText(String.valueOf(res));
+                    text1.setText(String.valueOf(res));
                     break;
                 case R.id.equal:
                     num[1] = Double.parseDouble(x);
                     if(add == true){
                         text2.setText(String.valueOf(num[0]+"+"+num[1]));
                         res = num[0]+num[1];
-                        resultado.setText(String.valueOf(res));
+                        text1.setText(String.valueOf(res));
                     }else if (sub == true){
                         text2.setText(String.valueOf(num[0]+"-"+num[1]));
                         res = num[0]-num[1];
-                        resultado.setText(String.valueOf(res));
+                        text1.setText(String.valueOf(res));
                     }else if (mult == true){
                         text2.setText(String.valueOf(num[0]+"*"+num[1]));
                         res = num[0]*num[1];
-                        resultado.setText(String.valueOf(res));
+                        text1.setText(String.valueOf(res));
                     }else if (div == true){
                         text2.setText(String.valueOf(num[0]+"/"+num[1]));
                         res = num[0]/num[1];
-                        resultado.setText(String.valueOf(res));
+                        text1.setText(String.valueOf(res));
                     }
                     add = false;
                     sub = false;
@@ -192,9 +193,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     div = false;
                     break;
             }
-
         }catch (Exception e){
-            resultado.setText("ERROR");
+            text1.setText("ERROR");
         }
     }
 }
